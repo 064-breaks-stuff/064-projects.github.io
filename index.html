@@ -284,38 +284,12 @@
 
         .domain-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: var(--space-lg);
         }
 
-        .projects-section h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: var(--space-lg);
-            padding-bottom: var(--space-md);
-            display: inline-block;
-        }
-
-        /* Domain Subsections */
-        .domain-subsection {
-            margin-bottom: var(--space-xl);
-        }
-
-        .domain-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #A5B4FC;
-            margin-bottom: var(--space-md);
-            padding-bottom: var(--space-sm);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .domain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--space-lg);
+        .domain-grid .project-card:only-child {
+            grid-column: auto;
         }
 
         .projects-section:nth-child(1) h2 {
@@ -481,6 +455,29 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Project 7 -->
+                        <div class="project-card">
+                            <h2>Budget Planner Mobile App</h2>
+                            <p>Intelligent budget management tool for personal finance. Features expense categorization, savings goals, and spending analytics with real-time notifications.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Redux</span>
+                                <span class="tag">SQLite</span>
+                                <span class="tag">Push Notifications</span>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">55%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 55%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -546,6 +543,75 @@
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 8 -->
+                        <div class="project-card">
+                            <h2>Recommendation Engine</h2>
+                            <p>Personalized recommendation system using collaborative filtering and deep learning. Optimized for e-commerce platforms with real-time user behavior analysis.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">Scikit-learn</span>
+                                <span class="tag">PostgreSQL</span>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">30%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 9 -->
+                        <div class="project-card">
+                            <h2>Image Classification API</h2>
+                            <p>Computer vision API for automated image recognition and classification. Built with state-of-the-art CNNs for real-time inference with high accuracy.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">Python</span>
+                                <span class="tag">ResNet</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">OpenCV</span>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">25%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 10 -->
+                        <div class="project-card">
+                            <h2>NLP Sentiment Analyzer</h2>
+                            <p>Advanced natural language processing tool for sentiment analysis and emotion detection. Supports multiple languages with BERT-based transformers.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">Python</span>
+                                <span class="tag">Transformers</span>
+                                <span class="tag">BERT</span>
+                                <span class="tag">Hugging Face</span>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">40%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 40%"></div>
                                 </div>
                             </div>
                         </div>
