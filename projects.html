@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects Portfolio</title>
+    <style>
+        :root {
+            --color-primary: #6366F1;
+            --color-primary-hover: #4F46E5;
+            --color-bg: #0A0E27;
+            --color-surface: #1A1F3A;
+            --color-text: #E0E7FF;
+            --color-text-secondary: #A5B4FC;
+            --color-border: #312E81;
+            --color-success: #06B6D4;
+            --color-warning: #8B5CF6;
+            --color-error: #EC4899;
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --duration: 200ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0A0E27 0%, #1a1a4d 50%, #0A0E27 100%);
+            background-attachment: fixed;
+            color: var(--color-text);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(238, 238, 238, 0)),
+                radial-gradient(2px 2px at 60px 70px, #fff, rgba(255, 255, 255, 0)),
+                radial-gradient(1px 1px at 50px 50px, #fff, rgba(255, 255, 255, 0)),
+                radial-gradient(1px 1px at 130px 80px, #fff, rgba(255, 255, 255, 0)),
+                radial-gradient(2px 2px at 90px 10px, #fff, rgba(255, 255, 255, 0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Header */
+        header {
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-lg) 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        header p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        main {
+            padding: var(--space-xl) 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .projects-section .projects-grid {
+            margin-top: 0;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all var(--duration) ease;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
+            border-color: #6366F1;
+            transform: translateY(-4px);
+        }
+
+        .project-card h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text);
+        }
+
+        .project-card p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        /* Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1));
+            color: #C7D2FE;
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #6366F1;
+            transition: all var(--duration) ease;
+        }
+
+        .tag:hover {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: #E0E7FF;
+            border-color: #8B5CF6;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6), 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .tag.active {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: #E0E7FF;
+            border-color: #EC4899;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 25px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Progress Bar Section */
+        .progress-section {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-value {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--color-border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899, #06B6D4);
+            transition: width var(--duration) ease;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.7), 0 0 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: var(--space-sm);
+        }
+
+        .status-badge.planning {
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #C4B5FD;
+            border: 1px solid #8B5CF6;
+        }
+
+        .status-badge.in-progress {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #EC4899;
+            border: 1px solid #EC4899;
+        }
+
+        .status-badge.completed {
+            background-color: rgba(6, 182, 212, 0.2);
+            color: #67E8F9;
+            border: 1px solid #06B6D4;
+        }
+
+        /* Section Styles */
+        .projects-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .projects-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            display: inline-block;
+        }
+
+        .projects-section:nth-child(1) h2 {
+            color: #EC4899;
+            border-bottom: 2px solid #EC4899;
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 30px rgba(236, 72, 153, 0.2);
+        }
+
+        .projects-section:nth-child(2) h2 {
+            color: #06B6D4;
+            border-bottom: 2px solid #06B6D4;
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .projects-section:nth-child(3) h2 {
+            color: #8B5CF6;
+            border-bottom: 2px solid #8B5CF6;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.5), 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            main {
+                padding: var(--space-lg) 0;
+            }
+        }
+
+        /* Accessibility */
+        .progress-bar[role="progressbar"] {
+            position: relative;
+        }
+
+        button, a {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
+
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📊 My Projects</h1>
+            <p>A collection of my recent work and ongoing initiatives</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- In Progress Section -->
+            <section class="projects-section">
+                <h2>In Progress</h2>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <h2>E-Commerce Platform</h2>
+                        <p>A full-featured online store with product catalog, shopping cart, and payment integration. Built with modern tech stack for scalability and performance.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag active">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Payment API</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">85%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <div class="status-badge in-progress">
+                                ●
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <h2>Task Management Dashboard</h2>
+                        <p>Collaborative workspace for team project management. Features include kanban boards, timeline views, team collaboration tools, and analytics.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Express</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">WebSockets</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">60%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <div class="status-badge in-progress">
+                                ●
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <h2>Social Analytics Platform</h2>
+                        <p>Comprehensive analytics suite for social media management. Tracks engagement metrics, audience insights, and provides actionable recommendations.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">GraphQL</span>
+                            <span class="tag">AWS</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">72%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 72%"></div>
+                            </div>
+                            <div class="status-badge in-progress">
+                                ●
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <h2>Fitness Tracking App</h2>
+                        <p>Personal fitness companion with workout tracking, nutrition logging, progress visualization, and community social features.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Health APIs</span>
+                            <span class="tag">Charts</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">90%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <div class="status-badge in-progress">
+                                ●
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completed Section -->
+            <section class="projects-section">
+                <h2>Completed</h2>
+                <div class="projects-grid">
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <h2>Mobile Weather App</h2>
+                        <p>Real-time weather application with location-based forecasting, interactive maps, and push notifications for severe weather alerts.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Weather API</span>
+                            <span class="tag">Maps</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">100%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="status-badge completed">
+                                ✓
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coming Up Section -->
+            <section class="projects-section">
+                <h2>Coming Up</h2>
+                <div class="projects-grid">
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <h2>AI Content Generator</h2>
+                        <p>Intelligent content creation tool powered by machine learning. Generates blog posts, social media content, and marketing copy with customizable tone.</p>
+                        
+                        <div class="tags-container">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">GPT Integration</span>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span class="progress-value">45%</span>
+                            </div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <div class="status-badge planning">
+                                ○
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
