@@ -266,6 +266,58 @@
             display: inline-block;
         }
 
+        /* Domain Subsections */
+        .domain-subsection {
+            margin-bottom: var(--space-lg);
+        }
+
+        .domain-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #A5B4FC;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .projects-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            display: inline-block;
+        }
+
+        /* Domain Subsections */
+        .domain-subsection {
+            margin-bottom: var(--space-xl);
+        }
+
+        .domain-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #A5B4FC;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+
         .projects-section:nth-child(1) h2 {
             color: #EC4899;
             border-bottom: 2px solid #EC4899;
@@ -334,7 +386,7 @@
                         <p>A full-featured online store with product catalog, shopping cart, and payment integration. Built with modern tech stack for scalability and performance.</p>
                         
                         <div class="tags-container">
-                            <span class="tag">React</span>
+                            <span class="tag active">React</span>
                             <span class="tag">Node.js</span>
                             <span class="tag">MongoDB</span>
                             <span class="tag">Payment API</span>
@@ -437,29 +489,34 @@
             <!-- Completed Section -->
             <section class="projects-section">
                 <h2>Completed</h2>
-                <div class="projects-grid">
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <h2>Mobile Weather App</h2>
-                        <p>Real-time weather application with location-based forecasting, interactive maps, and push notifications for severe weather alerts.</p>
-                        
-                        <div class="tags-container">
-                            <span class="tag">React Native</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Weather API</span>
-                            <span class="tag">Maps</span>
-                        </div>
+                
+                <!-- Mobile Development Subsection -->
+                <div class="domain-subsection">
+                    <h3 class="domain-title">📱 Mobile Development</h3>
+                    <div class="domain-grid">
+                        <!-- Project 2 -->
+                        <div class="project-card">
+                            <h2>Mobile Weather App</h2>
+                            <p>Real-time weather application with location-based forecasting, interactive maps, and push notifications for severe weather alerts.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Firebase</span>
+                                <span class="tag">Weather API</span>
+                                <span class="tag">Maps</span>
+                            </div>
 
-                        <div class="progress-section">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span class="progress-value">100%</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-fill" style="width: 100%"></div>
-                            </div>
-                            <div class="status-badge completed">
-                                ✓
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">100%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <div class="status-badge completed">
+                                    ✓
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -469,29 +526,34 @@
             <!-- Coming Up Section -->
             <section class="projects-section">
                 <h2>Coming Up</h2>
-                <div class="projects-grid">
-                    <!-- Project 4 -->
-                    <div class="project-card">
-                        <h2>AI Content Generator</h2>
-                        <p>Intelligent content creation tool powered by machine learning. Generates blog posts, social media content, and marketing copy with customizable tone.</p>
-                        
-                        <div class="tags-container">
-                            <span class="tag">Python</span>
-                            <span class="tag">TensorFlow</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">GPT Integration</span>
-                        </div>
+                
+                <!-- Machine Learning & AI Subsection -->
+                <div class="domain-subsection">
+                    <h3 class="domain-title">🤖 Machine Learning & AI</h3>
+                    <div class="domain-grid">
+                        <!-- Project 4 -->
+                        <div class="project-card">
+                            <h2>AI Content Generator</h2>
+                            <p>Intelligent content creation tool powered by machine learning. Generates blog posts, social media content, and marketing copy with customizable tone.</p>
+                            
+                            <div class="tags-container">
+                                <span class="tag">Python</span>
+                                <span class="tag">TensorFlow</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag">GPT Integration</span>
+                            </div>
 
-                        <div class="progress-section">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span class="progress-value">45%</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-fill" style="width: 45%"></div>
-                            </div>
-                            <div class="status-badge planning">
-                                ○
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Progress</span>
+                                    <span class="progress-value">45%</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <div class="status-badge planning">
+                                    ○
+                                </div>
                             </div>
                         </div>
                     </div>
