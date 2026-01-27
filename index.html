@@ -37,6 +37,7 @@
 
         html {
             font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -46,6 +47,7 @@
             color: var(--color-text);
             line-height: 1.5;
             position: relative;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -73,6 +75,117 @@
             50% { opacity: 0.8; }
         }
 
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(139, 92, 246, 0.6); }
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .reveal.active {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+
+        .reveal-left.active {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+
+        .reveal-right.active {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .reveal-scale.active {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        /* Stagger children animations */
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .stagger.active > * {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .stagger.active > :nth-child(1) { animation-delay: 0.1s; }
+        .stagger.active > :nth-child(2) { animation-delay: 0.2s; }
+        .stagger.active > :nth-child(3) { animation-delay: 0.3s; }
+        .stagger.active > :nth-child(4) { animation-delay: 0.4s; }
+        .stagger.active > :nth-child(5) { animation-delay: 0.5s; }
+        .stagger.active > :nth-child(6) { animation-delay: 0.6s; }
+        .stagger.active > :nth-child(7) { animation-delay: 0.7s; }
+        .stagger.active > :nth-child(8) { animation-delay: 0.8s; }
+
         /* Header */
         header {
             background: var(--color-surface);
@@ -82,6 +195,18 @@
             top: 0;
             z-index: 10;
             box-shadow: var(--shadow-sm);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6366F1, #EC4899, transparent);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease-in-out infinite;
         }
 
         .container {
@@ -95,6 +220,7 @@
             font-weight: 700;
             color: var(--color-text);
             margin-bottom: var(--space-xs);
+            animation: textGlow 3s ease-in-out infinite;
         }
 
         header p {
@@ -129,6 +255,24 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
         }
 
         .project-card:hover {
@@ -142,6 +286,8 @@
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--color-text);
+            position: relative;
+            z-index: 1;
         }
 
         .project-card p {
@@ -150,6 +296,8 @@
             margin-bottom: var(--space-md);
             flex-grow: 1;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         /* Tags */
@@ -158,6 +306,8 @@
             flex-wrap: wrap;
             gap: var(--space-sm);
             margin-bottom: var(--space-md);
+            position: relative;
+            z-index: 1;
         }
 
         .tag {
@@ -177,6 +327,7 @@
             color: #E0E7FF;
             border-color: #8B5CF6;
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.6), 0 0 30px rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
         }
 
         .tag.active {
@@ -191,6 +342,8 @@
             margin-top: var(--space-lg);
             padding-top: var(--space-lg);
             border-top: 1px solid var(--color-border);
+            position: relative;
+            z-index: 1;
         }
 
         .progress-label {
@@ -218,12 +371,17 @@
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899, #06B6D4);
-            transition: width var(--duration) ease;
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: var(--radius-sm);
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.7), 0 0 25px rgba(139, 92, 246, 0.4);
+            width: 0;
         }
 
-        /* Status Badge (unused visually now but kept for extensibility) */
+        .progress-fill.animate {
+            width: var(--progress-width);
+        }
+
+        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -233,6 +391,8 @@
             font-size: 12px;
             font-weight: 600;
             margin-top: var(--space-sm);
+            position: relative;
+            z-index: 1;
         }
 
         .status-badge.planning {
@@ -350,6 +510,21 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.1), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-card:hover::before {
+            opacity: 1;
         }
 
         .social-card:hover {
@@ -361,6 +536,11 @@
         .social-icon {
             font-size: 48px;
             margin-bottom: var(--space-md);
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .social-card h3 {
@@ -388,6 +568,8 @@
             padding: var(--space-sm) var(--space-md);
             border: 1px solid rgba(6, 182, 212, 0.3);
             border-radius: var(--radius-sm);
+            position: relative;
+            z-index: 2;
         }
 
         .social-link:hover {
@@ -412,6 +594,37 @@
             text-shadow: 0 0 10px rgba(165, 180, 252, 0.1);
         }
 
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            border: 1px solid #EC4899;
+            border-radius: 50%;
+            color: #E0E7FF;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+            z-index: 100;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+            animation: slideInUp 0.3s ease-out;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .projects-grid {
@@ -429,6 +642,13 @@
             .domain-grid {
                 grid-template-columns: 1fr;
             }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         /* Accessibility */
@@ -444,6 +664,11 @@
         button:focus-visible, a:focus-visible {
             outline: 2px solid var(--color-primary);
         }
+
+        /* Parallax text effect */
+        .parallax-text {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -457,15 +682,15 @@
     <main>
         <div class="container">
             <!-- In Progress Section -->
-            <section class="projects-section">
+            <section class="projects-section reveal-left">
                 <h2>In Progress</h2>
                 
                 <!-- Web Development Subsection -->
                 <div class="domain-subsection">
-                    <h3 class="domain-title">🌐 Web Development</h3>
-                    <div class="domain-grid">
+                    <h3 class="domain-title reveal">🌐 Web Development</h3>
+                    <div class="domain-grid stagger">
                         <!-- Project 1 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>E-Commerce Platform</h2>
                             <p>A full-featured online store with product catalog, shopping cart, and payment integration. Built with modern tech stack for scalability and performance.</p>
                             
@@ -482,13 +707,13 @@
                                     <span class="progress-value">85%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 85%"></div>
+                                    <div class="progress-fill" style="--progress-width: 85%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 3 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Task Management Dashboard</h2>
                             <p>Collaborative workspace for team project management. Features include kanban boards, timeline views, team collaboration tools, and analytics.</p>
                             
@@ -505,13 +730,13 @@
                                     <span class="progress-value">60%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 60%"></div>
+                                    <div class="progress-fill" style="--progress-width: 60%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 5 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Social Analytics Platform</h2>
                             <p>Comprehensive analytics suite for social media management. Tracks engagement metrics, audience insights, and provides actionable recommendations.</p>
                             
@@ -528,7 +753,7 @@
                                     <span class="progress-value">72%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 72%"></div>
+                                    <div class="progress-fill" style="--progress-width: 72%"></div>
                                 </div>
                             </div>
                         </div>
@@ -537,10 +762,10 @@
 
                 <!-- Mobile Development Subsection -->
                 <div class="domain-subsection">
-                    <h3 class="domain-title">📱 Mobile Development</h3>
-                    <div class="domain-grid">
+                    <h3 class="domain-title reveal">📱 Mobile Development</h3>
+                    <div class="domain-grid stagger">
                         <!-- Project 6 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Fitness Tracking App</h2>
                             <p>Personal fitness companion with workout tracking, nutrition logging, progress visualization, and community social features.</p>
                             
@@ -557,13 +782,13 @@
                                     <span class="progress-value">90%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 90%"></div>
+                                    <div class="progress-fill" style="--progress-width: 90%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 7 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Budget Planner Mobile App</h2>
                             <p>Intelligent budget management tool for personal finance. Features expense categorization, savings goals, and spending analytics with real-time notifications.</p>
                             
@@ -580,7 +805,7 @@
                                     <span class="progress-value">55%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 55%"></div>
+                                    <div class="progress-fill" style="--progress-width: 55%"></div>
                                 </div>
                             </div>
                         </div>
@@ -589,15 +814,15 @@
             </section>
 
             <!-- Completed Section -->
-            <section class="projects-section">
+            <section class="projects-section reveal-right">
                 <h2>Completed</h2>
                 
                 <!-- Mobile Development Subsection -->
                 <div class="domain-subsection">
-                    <h3 class="domain-title">📱 Mobile Development</h3>
-                    <div class="domain-grid">
+                    <h3 class="domain-title reveal">📱 Mobile Development</h3>
+                    <div class="domain-grid stagger">
                         <!-- Project 2 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Mobile Weather App</h2>
                             <p>Real-time weather application with location-based forecasting, interactive maps, and push notifications for severe weather alerts.</p>
                             
@@ -614,7 +839,7 @@
                                     <span class="progress-value">100%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 100%"></div>
+                                    <div class="progress-fill" style="--progress-width: 100%"></div>
                                 </div>
                             </div>
                         </div>
@@ -623,15 +848,15 @@
             </section>
 
             <!-- Coming Up Section -->
-            <section class="projects-section">
+            <section class="projects-section reveal-left">
                 <h2>Coming Up</h2>
                 
                 <!-- Machine Learning & AI Subsection -->
                 <div class="domain-subsection">
-                    <h3 class="domain-title">🤖 Machine Learning & AI</h3>
-                    <div class="domain-grid">
+                    <h3 class="domain-title reveal">🤖 Machine Learning & AI</h3>
+                    <div class="domain-grid stagger">
                         <!-- Project 4 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>AI Content Generator</h2>
                             <p>Intelligent content creation tool powered by machine learning. Generates blog posts, social media content, and marketing copy with customizable tone.</p>
                             
@@ -648,13 +873,13 @@
                                     <span class="progress-value">45%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 45%"></div>
+                                    <div class="progress-fill" style="--progress-width: 45%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 8 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Recommendation Engine</h2>
                             <p>Personalized recommendation system using collaborative filtering and deep learning. Optimized for e-commerce platforms with real-time user behavior analysis.</p>
                             
@@ -671,13 +896,13 @@
                                     <span class="progress-value">30%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 30%"></div>
+                                    <div class="progress-fill" style="--progress-width: 30%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 9 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>Image Classification API</h2>
                             <p>Computer vision API for automated image recognition and classification. Built with state-of-the-art CNNs for real-time inference with high accuracy.</p>
                             
@@ -694,13 +919,13 @@
                                     <span class="progress-value">25%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 25%"></div>
+                                    <div class="progress-fill" style="--progress-width: 25%"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 10 -->
-                        <div class="project-card">
+                        <div class="project-card reveal">
                             <h2>NLP Sentiment Analyzer</h2>
                             <p>Advanced natural language processing tool for sentiment analysis and emotion detection. Supports multiple languages with BERT-based transformers.</p>
                             
@@ -717,7 +942,7 @@
                                     <span class="progress-value">40%</span>
                                 </div>
                                 <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-fill" style="width: 40%"></div>
+                                    <div class="progress-fill" style="--progress-width: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -726,25 +951,25 @@
             </section>
 
             <!-- Social Links Section -->
-            <section id="socials">
+            <section id="socials" class="reveal-right">
                 <h2>Connect With Me</h2>
                 <p class="section-subtitle">My Professional Socials</p>
-                <div class="socials-grid">
-                    <div class="social-card">
+                <div class="socials-grid stagger">
+                    <div class="social-card reveal-scale">
                         <div class="social-icon">💼</div>
                         <h3>LinkedIn</h3>
                         <p>Professional network and work history</p>
                         <a href="https://www.linkedin.com/in/karthik-kris/" target="_blank" rel="noopener noreferrer" class="social-link">Visit Profile →</a>
                     </div>
 
-                    <div class="social-card">
+                    <div class="social-card reveal-scale">
                         <div class="social-icon">🔗</div>
                         <h3>GitHub</h3>
                         <p>Source codes and open-source contributions</p>
                         <a href="https://github.com/0highlight64-breaks-stuff" target="_blank" rel="noopener noreferrer" class="social-link">View Repository →</a>
                     </div>
 
-                    <div class="social-card">
+                    <div class="social-card reveal-scale">
                         <div class="social-icon">🏆</div>
                         <h3>HackerRank</h3>
                         <p>Badges and Certifications</p>
@@ -757,7 +982,76 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Karthik V Krishnan. All rights reserved. Still no idea how I made this.</p>
+        <p>&copy; 2026 Karthik V Krishnan. All rights reserved. Still no idea how I made this.</p>
     </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-to-top" id="scrollToTop">↑</div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate progress bars when they come into view
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach((fill) => {
+                        fill.classList.add('animate');
+                    });
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Scroll to top button functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Parallax and enhanced hover effects
+        document.querySelectorAll('.social-card').forEach((card) => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
